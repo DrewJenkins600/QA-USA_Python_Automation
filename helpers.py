@@ -1,4 +1,4 @@
-def retrieve_phone_code(driver) -> str:
+def retrieve_phone_code(driver, WebDriverException=None) -> str:
     import json
     import time
     from selenium.common import WebDriverException
@@ -19,6 +19,8 @@ def retrieve_phone_code(driver) -> str:
             raise Exception("No phone confirmation code found.\n"
                             "Please use retrieve_phone_code only after the code was requested in your application.")
         return code
+
+
 def is_url_reachable(url):
     import ssl
     import urllib.request
