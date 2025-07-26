@@ -68,7 +68,7 @@ class TestUrbanRoutes:
         routes_page.select_supportive_plan()
         routes_page.click_add_blanket_and_handkerchiefs()
         routes_page.click_order_requirement()
-        assert routes_page.is_blanket_and_handkerchiefs_seleected()
+        assert routes_page.is_blanket_and_handkerchiefs_selected()
 
     def test_order_2_ice_creams(self):
         for i in range(2):
