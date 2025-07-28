@@ -4,6 +4,7 @@ from pages import UrbanRoutesPage
 from selenium import webdriver
 
 
+
 class TestUrbanRoutes:
     @classmethod
     def setup_class(cls):
@@ -30,7 +31,7 @@ class TestUrbanRoutes:
         routes_page = UrbanRoutesPage(self.driver)
         routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
         routes_page.select_supportive_plan()
-        assert routes_page.get_current_selected_plan() == 'supportive'
+        assert routes_page.is_suppoprtive_selected()
 
     def test_fill_phone_number(self):
         self.driver.get(data.URBAN_ROUTES_URL)
@@ -38,7 +39,7 @@ class TestUrbanRoutes:
         routes_page.set_route(data.ADDRESS_FROM, data.ADDRESS_TO)
         phone_number = data.PHONE_NUMBER
         routes_page.set_phone(phone_number)
-        assert routes_page.get_phone() == phone_number
+        assert routes_page.get_phone == phone_number
 
     def test_fill_card(self):
         self.driver.get(data.URBAN_ROUTES_URL)

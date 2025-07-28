@@ -12,14 +12,16 @@ class UrbanRoutesPage:
     to_field = (By.ID, 'to')
     # Tarrif and call button
     supportive_plan_card = (By.XPATH, '//div[contains(text(), "supportive")}')
-    supportive_plan_card_parent = (By.XPATH, '//div[contains(text(), "supportive")]//..')
+    supportive_plan_card_parent = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[2]/div[1]/div[5]')
     active_plan_card = (By.XPATH, '//div[@class="tcard active"]//div[@class="tcard-title]')
     call_taxi_button = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[1]/div[3]/div[1]/button')
     ADD_BUTTON_LOCATOR = (By.XPATH, '//button[@type="submit" and text()="Add"]')
     VERIFICATION_TEXT_LOCATOR = (By.XPATH, '//div[@class="section active"]//div[@style="margin-bottom: 30px;"]')
-    blanket_and_handkerchiefs_selector = (By.XPATH, "//div[contains(text(), 'Blanket')]")
+    blanket_and_handkerchiefs_selector = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[2]/div[2]/div[4]/div[2]/div[1]/div/div[1]')
     message_for_driver = (By.XPATH, '//*[@id="root"]/div/div[3]/div[3]/div[2]/div[2]/div[3]/div/label')
     order_requirements = (By.XPATH, "//div[contains(text(), 'Order Requirements')]")
+    phone_number = (By.XPATH, '//*[@id="root"]/div/div[1]/div[2]/div[1]/form/div[1]/div/label')
+
 
     # Phone number
 
@@ -58,11 +60,12 @@ class UrbanRoutesPage:
     def select_supportive_plan(self):
         self.driver.find_element(*self.supportive_plan_card_parent).click()
 
-    def get_current_selected_plan(self):
-        return self.driver.find_element(*self.supportive_plan_card_parent).get_property('value')
+    def is_suppoprtive_selected(self):
+        return self.driver.find_element(*self.supportive_plan_card_parent).get_attribute("class") == 'tcard active'
 
     def set_phone(self, phone_number):
-        return self.driver.find_element(*self.supportive_plan_card_parent).send_keys(phone_number)
+        self.driver.find_element(*self.phone_number).send_keys(phone_number)
+
 
     def get_phone(self):
         return self.driver.find_element(*self.supportive_plan_card_parent).get_property('value')
@@ -96,11 +99,11 @@ class UrbanRoutesPage:
     def get_message_for_driver(self):
         return self.driver.find_element(*self.message_for_driver).get_property('value')
 
-    def click_add_blanket_and_handkerchiefs(self):
+    def click_add_blanket_and_handkerchiefs_option(self):
         self.driver.find_element(*self.add_blanket_and_handkerchiefs_locator).click()
 
     def is_blanket_and_handkerchiefs_selected(self):
-        pass
+        self.driver.find_element(*self.blanket_and_handkerchiefs_selector).click()
 
     def order_ice_cream(self, param):
         pass
